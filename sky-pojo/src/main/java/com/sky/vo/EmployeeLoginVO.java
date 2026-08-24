@@ -16,6 +16,7 @@ import java.io.Serializable;
 @ApiModel(description = "员工登录返回的数据格式")
 public class EmployeeLoginVO implements Serializable {
 
+//    Swagger/OpenAPI 工具会读取这个注解，自动生成接口文档
     @ApiModelProperty("主键值")
     private Long id;
 
