@@ -22,3 +22,30 @@
 | VO     | 视图对象，为前端展示数据提供的对象            |
 | POJO   | 普通java对象，只有属性和对应的gettera和setter |
 
+# 问题
+
+## 问题1 当遇到不能正常显示时间格式
+
+​	解决方法1：
+
+```
+@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss")
+```
+
+​	但是这个只能适合1段代码。
+
+​	解决方法2：
+
+```
+protected void extendMessageConverters(List<HttpMessageConverter<?>> converters) {
+    //创建一下消息转换器对象
+    MappingJackson2HttpMessageConverter messageConverter = new MappingJackson2HttpMessageConverter();
+    //需要详细转换器设置一下对象转换器，可以将Java对象序列化为Json数据
+    messageConverter.setObjectMapper(new JacksonObjectMapper());
+    //将上面的消息转换器对象追加到mvc框架的转换器集合中 将自己的消息加入到消息转换器中
+    converters.add(0,messageConverter);
+}
+```
+
+​	扩展 MVC 消息转换器，自定义序列化规则，可以统一对时间格式进行统一，不需要单独编写
+
