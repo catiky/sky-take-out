@@ -32,4 +32,11 @@ public interface EmployeeMapper {
      * @return
      */
     Page<Employee> pageQuery(EmployeePageQueryDTO employeePageQueryDTO);
+
+    /**
+     * 启用/禁用员工账号
+     * @param employee
+     * 设计成为employee对象，方便后续扩展 这样这个函数就可以重用更新，
+     */
+    void update(Employee employee);
 }

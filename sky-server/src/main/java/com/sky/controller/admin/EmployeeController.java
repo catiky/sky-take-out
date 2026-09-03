@@ -101,4 +101,15 @@ public class EmployeeController {
         PageResult pageResult = employeeService.pageQuery(employeePageQueryDTO);
         return Result.success(pageResult);
     }
+    /**
+     * 启用禁用员工
+     * @return
+     */
+    @PostMapping("/status/{status}")
+    @ApiOperation("启用禁用员工")
+    public Result startORstop(@PathVariable  Integer status,Long id){
+            employeeService.startORstop(status,id);
+            return Result.success();
+    }
+
 }
