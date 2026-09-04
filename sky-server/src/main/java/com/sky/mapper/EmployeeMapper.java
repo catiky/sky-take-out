@@ -39,4 +39,12 @@ public interface EmployeeMapper {
      * 设计成为employee对象，方便后续扩展 这样这个函数就可以重用更新，
      */
     void update(Employee employee);
+
+    /**
+     * 根据id查询员工信息
+     * @param id
+     * @return
+     */
+    @Select("select * from employee where id = #{id}")
+    Employee getById(Long id);
 }
